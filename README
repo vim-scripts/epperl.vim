@@ -1,0 +1,5 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=657
+
+Allows syntax highlighting for EP-PERL scripts.
+Supports the <EP-PERL>, <EP-IF> and <EP-COMMENT> tags.
+support for the other tags might be enabled in later versions.
