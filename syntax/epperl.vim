@@ -16,9 +16,7 @@
 "		autocmd BufNewFile,BufRead *.ep,*.nep colorscheme epperl_yellow
 "
 "	CHANGELOG:
-" CHANGELOG:
-" v1.0 - initial release (19 May 2003)
-" v1.1 - Fixed the loose string highlight (perlFunctionName bug) and added ep-comment support (25 May 2003)
+"	v1.0 - initial release
 "
 
 syn case match
@@ -52,10 +50,13 @@ else
 endif
 
 
-syn cluster htmlPreproc add=EPInsideHtml
 
-" these are the ep-perl region, which simply contain perl expressions
+syn cluster htmlPreproc add=EPInsideHtml,EPVarInHTML
+
 syn case ignore
+
+
+" these is the ep-perl region, which simply contain perl expressions
 syn region EPInsideHtml matchgroup=EPTags start="<EP-PERL>" end="</EP-PERL>" contains=@EPPerl
 
 " can't make it to contain EPPerl without complex matching becuase of the $" problem, so I left it for now.
@@ -64,10 +65,14 @@ syn region EPInsideHtml matchgroup=EPTags start=+<EP-IF eval="+ end=+">+
 " a block with one big comment
 syn region EPComment matchgroup=EPTags start="<EP-COMMENT>" end="</EP-COMMENT>"
 
+" Perl Vars inside HTML
+syn match EPVarInHTML	"\$[#@]*[a-zA-z]\+\(\(->\$*\)*[a-zA-Z0-9_]\)*\$"
+
 syn case match
 
 hi link EPComment Comment
 highlight EPTags         ctermfg=darkcyan
+hi link EPVarInHTML EPTags
 
 
 
